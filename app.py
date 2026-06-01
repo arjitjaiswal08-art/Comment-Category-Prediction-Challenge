@@ -108,6 +108,20 @@ def predict_ensemble(X, X_tfidf_word, X_tfidf_char):
     
     return int(prediction), float(confidence), ensemble_proba[0].tolist()
 
+@app.route('/', methods=['GET'])
+def home():
+    """Home page"""
+    return jsonify({
+        'message': 'Comment Category Prediction API',
+        'version': '1.0',
+        'endpoints': {
+            'health': '/health',
+            'predict': '/predict (POST)',
+            'batch_predict': '/batch_predict (POST)'
+        },
+        'status': 'running'
+    })
+
 @app.route('/health', methods=['GET'])
 def health():
     """Health check endpoint"""
